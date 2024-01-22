@@ -2,9 +2,9 @@ const User = require('../models/User')
 
 async function show(req, res) {
     try {
-        const foundUser = await User.findById(null)
+        const foundUser = await User.findById(req.id)
 
-        
+
 
         res.status(200).json({
             username: foundUser.username,

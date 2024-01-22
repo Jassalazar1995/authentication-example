@@ -20,6 +20,35 @@ function Register({ setUser }) {
     }
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await axios.post('/auth/register', form) 
+            const token = response.data.token
+
+            console.log(token)
+
+            if(!token) {
+                setForm(emptyForm)
+                return
+            }
+
+            localStorage.setItem("token", token)
+
+            const userResponse = await axios.get('/api/users', {
+                headers: {
+                    Authorization: token
+                }
+            })
+
+            setUser(userResponse.data)
+
+            navigate()
+
+        } catch (error) {
+            console.log(error.response.data.error)
+            alert(error.response.data.error)
+        }
+        
     }
 
     return ( 

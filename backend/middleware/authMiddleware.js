@@ -7,7 +7,7 @@ try {
 
     // 1. Check if the request has a token (in the Authorization header)
 
-    const token = req.header("Authorization")
+    let token = req.header("Authorization")
 
     if(!token){
         return res.status(403).json({ error: "No token provided" })
@@ -30,7 +30,7 @@ try {
     // 3. Attach the payload from the token to the request object (req)
     req.id = payload.id
     req.username = payload.username
-    
+
     // 4. Move on to the requested route (next)
 
     next()
