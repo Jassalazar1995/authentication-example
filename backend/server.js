@@ -22,5 +22,6 @@ app.use('/api/users', userRoutes)
 
 app.listen(PORT, () => {
     console.log('Listening on port: ' + PORT)
+    mongoConfig()
 })
 
