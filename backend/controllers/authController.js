@@ -60,7 +60,7 @@ try {
         // 3. Generate a JWT token and return it to the user 
         const token = generateToken(foundUser)
     
-        res.status(200).json(token)
+        res.status(200).json({token})
 } catch (error) {
     console.log(error.message)
     res.status(400).json({ error: error.message})
